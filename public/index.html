@@ -3,88 +3,661 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="FIRE-HARMONIX harmonizes NASA FIRMS MODIS and VIIRS active-fire observations.">
-  <title>FIRE-HARMONIX · Satellite Fire Intelligence</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23060914%22/><path d=%22M34 8c4 12-5 15 1 24 2-7 8-10 11-15 7 10 10 19 6 28-5 12-20 15-31 9C6 47 11 29 23 19c0 8 3 11 5 13-2-10 2-16 6-24Z%22 fill=%22%23ff6b2c%22/><path d=%22M34 36c6 7 7 14 1 19-8 2-14-4-11-11 2-4 6-6 10-8Z%22 fill=%22%23ffd166%22/></svg>">
-  <link rel="stylesheet" href="/styles.css">
+  <meta name="description" content="FIRE-HARMONIX · Advanced Spaceborne Thermal Intelligence Platform for Cross-Sensor Harmonization.">
+  <title>FIRE-HARMONIX · Satellite Thermal Intelligence Platform</title>
+
+  <!-- Favicon: Futuristic Orbital Reticle -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23030712%22/><circle cx=%2232%22 cy=%2232%22 r=%2222%22 fill=%22none%22 stroke=%22%2338bdf8%22 stroke-width=%222%22 stroke-dasharray=%224 2%22/><circle cx=%2232%22 cy=%2232%22 r=%2214%22 fill=%22none%22 stroke=%22%23ff6b2c%22 stroke-width=%222%22/><circle cx=%2232%22 cy=%2232%22 r=%226%22 fill=%22%23ff6b2c%22/><path d=%22M32 4v8M32 52v8M4 32h8M52 32h8%22 stroke=%22%2338bdf8%22 stroke-width=%222%22/></svg>">
+
+  <!-- High-Tech Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Styles & MapLibre GL 3D Globe Engine -->
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.2/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="/styles.css?v=6">
+  <link rel="stylesheet" href="/globe-map.css?v=6">
+  <script src="https://unpkg.com/maplibre-gl@5.6.2/dist/maplibre-gl.js"></script>
 </head>
 <body>
   <div class="shell">
+    <!-- Left Navigation Rail / Command Deck -->
     <aside class="rail">
-      <a class="brand" href="#overview" aria-label="FIRE-HARMONIX overview"><span class="brand-mark">FH</span><span>FIRE<br><b>HARMONIX</b></span></a>
-      <nav aria-label="Primary navigation">
-        <button class="nav-item active" data-view="overview"><span>01</span>Overview</button>
-        <button class="nav-item" data-view="harmonize"><span>02</span>Harmonize</button>
-        <button class="nav-item" data-view="calendar"><span>03</span>Calendar</button>
-        <button class="nav-item" data-view="lab"><span>04</span>Scenario Lab</button>
-        <button class="nav-item" data-view="data"><span>05</span>Data</button>
+      <a class="brand" href="#overview" aria-label="FIRE-HARMONIX home">
+        <div class="brand-badge">
+          <svg viewBox="0 0 40 40" class="brand-svg">
+            <circle cx="20" cy="20" r="17" fill="none" stroke="rgba(56,189,248,0.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <circle cx="20" cy="20" r="11" fill="none" stroke="#38bdf8" stroke-width="1.8"/>
+            <path d="M20 5 L20 35 M5 20 L35 20" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
+            <circle cx="20" cy="20" r="4" fill="#ff6b2c"/>
+            <circle cx="27" cy="14" r="2.2" fill="#38bdf8"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">FIRE<b>·HARMONIX</b></span>
+          <span class="brand-sub">SATELLITE INTELLIGENCE</span>
+        </div>
+      </a>
+
+      <!-- Primary Navigation Modules -->
+      <nav aria-label="Orbital navigation">
+        <button class="nav-item active" data-view="overview">
+          <span class="nav-num">01</span>
+          <span class="nav-label">Overview</span>
+        </button>
+        <button class="nav-item" data-view="explorer">
+          <span class="nav-num">02</span>
+          <span class="nav-label">Global Explorer</span>
+          <span class="nav-chip">3D</span>
+        </button>
+        <button class="nav-item" data-view="harmonize">
+          <span class="nav-num">03</span>
+          <span class="nav-label">Harmonization</span>
+        </button>
+        <button class="nav-item" data-view="calendar">
+          <span class="nav-num">04</span>
+          <span class="nav-label">Activity Calendar</span>
+        </button>
+        <button class="nav-item" data-view="lab">
+          <span class="nav-num">05</span>
+          <span class="nav-label">Scenario Lab</span>
+        </button>
+        <button class="nav-item" data-view="data">
+          <span class="nav-num">06</span>
+          <span class="nav-label">Data Explorer</span>
+        </button>
+        <button class="nav-item" data-view="methodology">
+          <span class="nav-num">07</span>
+          <span class="nav-label">Methodology</span>
+        </button>
       </nav>
-      <div class="rail-foot"><span class="pulse"></span> Prototype online<br><small><span id="railCount">—</span> source observations</small></div>
+
+      <!-- Constellation Telemetry Footnote -->
+      <div class="rail-foot">
+        <div class="constellation-status">
+          <span class="status-radar"></span>
+          <div class="constellation-info">
+            <strong>CONSTELLATION ONLINE</strong>
+            <small>TERRA · AQUA · NOAA-20 · S-NPP</small>
+          </div>
+        </div>
+        <div class="foot-metrics">
+          <span>SAMPLING: <b id="railCount">200</b> OBSERVATIONS</span>
+          <span>GRID: <b>0.05° SPATIAL RESOLUTION</b></span>
+        </div>
+      </div>
     </aside>
 
+    <!-- Main Mission Control Deck -->
     <main>
+      <!-- Top Flight Command Bar -->
       <header class="topbar">
-        <div><p class="eyebrow">NASA SPACE APPS · EARTH INTELLIGENCE</p><h1 id="viewTitle">Global activity overview</h1></div>
-        <div class="top-actions"><label class="sensor-filter">Sensor<select id="sensorSelect"><option value="ALL">All sensors</option><option value="MODIS">MODIS</option><option value="VIIRS">VIIRS</option></select></label><span class="utc">DATASET · NOV 2024—JAN 2025</span></div>
+        <div class="topbar-left">
+          <div class="mission-tag">ORBITAL OBSERVATION PLATFORM · CROSS-SENSOR HARMONIZATION</div>
+          <h1 id="viewTitle">Global Activity Overview</h1>
+        </div>
+        <div class="topbar-right">
+          <div class="mission-clock" title="Mission Time Reference">
+            <span class="clock-label">ORBITAL TIME</span>
+            <strong id="liveUtcClock">UTC 2026-10-09 15:30:00</strong>
+          </div>
+          <div class="top-controls">
+            <label class="filter-group">
+              <span class="filter-label">SENSOR FILTER</span>
+              <select id="sensorSelect" aria-label="Filter observations by satellite sensor">
+                <option value="ALL">ALL SENSORS (MODIS + VIIRS)</option>
+                <option value="MODIS">MODIS ONLY (~1 KM)</option>
+                <option value="VIIRS">VIIRS ONLY (~375 M)</option>
+              </select>
+            </label>
+            <a class="action-btn download-btn" href="/data/fire_samples.csv" download title="Download auditable observation dataset in CSV format">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              <span>EXPORT CSV</span>
+            </a>
+          </div>
+        </div>
       </header>
 
+      <!-- VIEW 01: OVERVIEW -->
       <section class="view active" id="overview">
-        <div class="metrics" aria-label="Dataset summary">
-          <article><span>Sample detections</span><strong id="totalDetections">100</strong><small>from Kaggle FIRMS dataset</small></article>
-          <article><span>Fire radiative power</span><strong id="totalFrp">—</strong><small>aggregate MW in sample</small></article>
-          <article><span>Common grid cells</span><strong id="gridCount">—</strong><small>0.05° harmonization grid</small></article>
-          <article class="accent-card"><span>Unusual activity</span><strong id="unusualCount">—</strong><small>engineering threshold only</small></article>
+        <!-- Telemetry Metrics Banner -->
+        <div class="metrics-deck" aria-label="Orbital telemetry summary">
+          <article class="metric-card">
+            <div class="metric-header">
+              <span>SATELLITE DETECTIONS</span>
+              <span class="metric-code">DET_CNT</span>
+            </div>
+            <strong id="totalDetections">200</strong>
+            <small>Spaceborne thermal detections</small>
+          </article>
+          <article class="metric-card">
+            <div class="metric-header">
+              <span>RADIATIVE POWER</span>
+              <span class="metric-code">FRP_AGG</span>
+            </div>
+            <strong id="totalFrp">—</strong>
+            <small>Aggregate thermal flux in sample</small>
+          </article>
+          <article class="metric-card">
+            <div class="metric-header">
+              <span>HARMONIZED CELLS</span>
+              <span class="metric-code">GRID_0.05</span>
+            </div>
+            <strong id="gridCount">—</strong>
+            <small>Unique spatio-temporal cells</small>
+          </article>
+          <article class="metric-card alert-card">
+            <div class="metric-header">
+              <span>UNUSUAL ANOMALIES</span>
+              <span class="metric-code">HFAI_ALERT</span>
+            </div>
+            <strong id="unusualCount">—</strong>
+            <small>Statistical threshold outliers</small>
+          </article>
         </div>
+
+        <!-- Overview Central Grid -->
         <div class="overview-grid">
-          <article class="panel map-panel">
-            <div class="panel-head"><div><p class="kicker">HARMONIZED VIEW</p><h2>Satellite-detected thermal activity</h2></div><div class="legend"><span><i class="dot modis"></i>MODIS</span><span><i class="dot viirs"></i>VIIRS</span></div></div>
-            <div class="world" id="worldMap" role="img" aria-label="World map plot of sampled fire detections"><div class="latitude-lines"></div><div class="map-empty">Loading spatial observations…</div></div>
-            <p class="map-note">Positions are projected from latitude and longitude. Thermal detections are not automatically confirmed wildfires.</p>
+          <!-- Overview 3D Globe Slot -->
+          <article class="panel globe-preview-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-eyebrow">SPATIAL DISTRIBUTION</span>
+                <h2>3D Global Observation Sphere</h2>
+              </div>
+              <div class="head-actions">
+                <button type="button" class="panel-btn" onclick="setView('explorer')">
+                  EXPAND TO FULL EXPLORER ↗
+                </button>
+              </div>
+            </div>
+            <!-- Mount point for 3D Globe when on overview -->
+            <div class="globe-viewport-slot" id="overviewGlobeSlot">
+              <!-- #worldMap container will be placed here or in explorer -->
+              <div class="world" id="worldMap" role="img" aria-label="Interactive 3D Earth Globe observation sphere">
+                <div class="map-empty">Loading spatial observations…</div>
+              </div>
+            </div>
+            <div class="panel-foot">
+              <span>Positions projected from satellite coordinate telemetry. Thermal anomalies do not automatically constitute confirmed ground wildfires.</span>
+            </div>
           </article>
+
+          <!-- Focus Target Telemetry Card -->
           <article class="panel focus-panel">
-            <div class="panel-head"><div><p class="kicker">FOCUS SIGNAL</p><h2 id="focusRegion">Highest activity sample</h2></div><span class="status-pill" id="focusStatus">—</span></div>
-            <div class="radial" id="radial"><div><strong id="focusHfai">—</strong><span>HFAI</span></div></div>
-            <dl class="signal-list">
-              <div><dt>Sensor</dt><dd id="focusSensor">—</dd></div><div><dt>FRP</dt><dd id="focusFrp">—</dd></div><div><dt>Brightness</dt><dd id="focusBrightness">—</dd></div><div><dt>Agreement</dt><dd id="focusAgreement">—</dd></div>
+            <div class="panel-head">
+              <div>
+                <span class="panel-eyebrow">PRIORITY SIGNAL</span>
+                <h2 id="focusRegion">Coordinates Loading…</h2>
+              </div>
+              <span class="status-badge" id="focusStatus">—</span>
+            </div>
+
+            <!-- Radial HFAI Gauge -->
+            <div class="radial-gauge-container">
+              <div class="radial" id="radial">
+                <div class="radial-center">
+                  <strong id="focusHfai">—</strong>
+                  <span>HFAI INDEX</span>
+                </div>
+              </div>
+              <div class="gauge-caption">HARMONIZED FIRE ACTIVITY INDEX</div>
+            </div>
+
+            <dl class="telemetry-list">
+              <div><dt>SENSOR / SAT</dt><dd id="focusSensor">—</dd></div>
+              <div><dt>RADIATIVE POWER</dt><dd id="focusFrp">—</dd></div>
+              <div><dt>BRIGHTNESS TEMP</dt><dd id="focusBrightness">—</dd></div>
+              <div><dt>SENSOR AGREEMENT</dt><dd id="focusAgreement">—</dd></div>
             </dl>
-            <button class="primary" data-open-lab>Inspect this observation</button>
+
+            <button class="primary-btn full-btn" data-open-lab>
+              INSPECT IN SCENARIO LAB →
+            </button>
+          </article>
+        </div>
+
+        <!-- Constellation Status & Quick Anomaly Feed -->
+        <div class="overview-lower-grid">
+          <article class="panel constellation-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-eyebrow">SENSOR ARCHITECTURE</span>
+                <h2>Cross-Sensor Constellation</h2>
+              </div>
+            </div>
+            <div class="sensor-cards" id="overviewSensorCards"></div>
+          </article>
+
+          <article class="panel anomalies-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-eyebrow">HIGH SEVERITY SIGNALS</span>
+                <h2>Peak Thermal Radiance</h2>
+              </div>
+              <span class="panel-tag">SORTED BY HFAI</span>
+            </div>
+            <div class="anomalies-list" id="overviewAnomaliesList"></div>
           </article>
         </div>
       </section>
 
-      <section class="view" id="harmonize">
-        <div class="section-intro"><p class="kicker">COMMON SPATIO-TEMPORAL LANGUAGE</p><h2>Two sensors. One analytical surface.</h2><p>MODIS and VIIRS are normalized within their own sensor groups, then compared on a shared 0.05° grid.</p></div>
-        <div class="sensor-cards" id="sensorCards"></div>
-        <article class="panel pipeline">
-          <div><span>01</span><b>Raw observations</b><small>14 source fields preserved</small></div><i></i><div><span>02</span><b>Sensor normalization</b><small>Brightness, FRP, confidence</small></div><i></i><div><span>03</span><b>Common grid</b><small>Spatial + daily aggregation</small></div><i></i><div><span>04</span><b>HFAI</b><small>Transparent engineering index</small></div>
-        </article>
-        <div class="compare-grid"><article class="panel"><div class="panel-head"><div><p class="kicker">DISTRIBUTION</p><h2>Detection mix</h2></div></div><div class="bars" id="sensorBars"></div></article><article class="panel"><div class="panel-head"><div><p class="kicker">METHOD NOTE</p><h2>What this prototype does</h2></div></div><p class="method-copy">This version does not run Isolation Forest or XGBoost. It computes a reproducible HFAI from within-sensor normalization, source confidence, and a project-defined agreement score. That makes every output traceable while the modeling layer is still being developed.</p></article></div>
-      </section>
-
-      <section class="view" id="calendar">
-        <div class="section-intro"><p class="kicker">BURNING ACTIVITY CALENDAR</p><h2>See when activity concentrates.</h2><p>Each cell represents one sampled day. Color intensity follows average HFAI, not confirmed fire severity.</p></div>
-        <article class="panel calendar-panel"><div class="calendar-scale"><span>Lower activity</span><i></i><i></i><i></i><i></i><i></i><span>Higher activity</span></div><div class="calendar" id="activityCalendar"></div></article>
-        <div class="periods" id="criticalPeriods"></div>
-      </section>
-
-      <section class="view" id="lab">
-        <div class="lab-layout">
-          <div class="section-intro"><p class="kicker">NO-MODEL PROTOTYPE</p><h2>Test a real observation.</h2><p>Choose one of the <span id="labCount">—</span> records sampled from the Kaggle dataset. The result is calculated with the transparent engineering rules described in the methodology—not an AI prediction.</p>
-            <label class="sample-picker">Sample observation<select id="sampleSelect"></select></label>
-            <div class="raw-grid"><label>Latitude<input id="inputLat" readonly></label><label>Longitude<input id="inputLon" readonly></label><label>Brightness (K)<input id="inputBrightness" readonly></label><label>FRP (MW)<input id="inputFrp" readonly></label><label>Confidence<input id="inputConfidence" readonly></label><label>Day / night<input id="inputDaynight" readonly></label></div>
-            <button class="primary large" id="analyzeButton">Generate prototype output</button>
+      <!-- VIEW 02: GLOBAL EXPLORER (Cinematic Full 3D Globe Centerpiece) -->
+      <section class="view" id="explorer">
+        <div class="explorer-deck">
+          <div class="explorer-banner">
+            <div>
+              <span class="panel-eyebrow">ORBITAL OBSERVATION DECK</span>
+              <h2>Cinematic 3D Earth Observation Globe</h2>
+              <p>Explore spaceborne active-fire thermal anomalies projected onto a realistic high-resolution Earth sphere. Orbit, pitch, and inspect individual cluster footprints.</p>
+            </div>
+            <div class="explorer-actions">
+              <span class="hotspot-count-pill" id="explorerCountPill">200 ACTIVE OBSERVATIONS</span>
+            </div>
           </div>
-          <article class="result-card" id="resultCard"><p class="kicker">PROTOTYPE OUTPUT</p><div class="result-status"><span id="resultStatus">Select a sample</span><strong id="resultScore">—</strong></div><div class="result-track"><i id="resultTrack"></i></div><dl><div><dt>Grid cell</dt><dd id="resultGrid">—</dd></div><div><dt>Sensor agreement</dt><dd id="resultAgreement">—</dd></div><div><dt>Satellite / sensor</dt><dd id="resultSensor">—</dd></div><div><dt>Observed UTC</dt><dd id="resultTime">—</dd></div></dl><div class="disclaimer"><b>Interpretation</b><p id="resultText">Choose a source observation to inspect its harmonized activity index.</p></div></article>
+          <div class="explorer-viewport-wrap" id="explorerGlobeSlot">
+            <!-- Widescreen Globe Destination Slot -->
+          </div>
         </div>
       </section>
 
+      <!-- VIEW 03: SENSOR HARMONIZATION -->
+      <section class="view" id="harmonize">
+        <div class="section-hero">
+          <span class="panel-eyebrow">SPATIAL-TEMPORAL STANDARDIZATION</span>
+          <h2>Sensor Disparity to Harmonized Intelligence</h2>
+          <p>Satellite instruments capture thermal infrared anomalies through contrasting optics, spectral bands, and pixel footprints. MODIS records at approximately 1 km resolution, while VIIRS observes at 375 m with distinct sub-pixel sensitivity. Direct count aggregation introduces sensor bias—FIRE-HARMONIX standardizes observations across physics, space, and time.</p>
+        </div>
+
+        <!-- Sensor Comparison Cards -->
+        <div class="sensor-spec-grid">
+          <article class="panel spec-card modis-spec">
+            <div class="spec-head">
+              <span class="sensor-badge modis">MODIS</span>
+              <span class="sat-badge">TERRA &amp; AQUA</span>
+            </div>
+            <h3>Moderate Resolution Imaging Spectroradiometer</h3>
+            <div class="spec-features">
+              <div><small>Pixel Footprint</small><b>≈ 1,000 m nadir</b></div>
+              <div><small>Thermal Channels</small><b>4 µm &amp; 11 µm</b></div>
+              <div><small>Sample Detections</small><b id="modisCount">—</b></div>
+              <div><small>Mean Radiative Power</small><b id="modisMeanFrp">—</b></div>
+            </div>
+            <p class="spec-desc">Historical baseline instrument operational since 1999. High saturation thresholds suitable for large, intense thermal fronts.</p>
+          </article>
+
+          <article class="panel spec-card viirs-spec">
+            <div class="spec-head">
+              <span class="sensor-badge viirs">VIIRS</span>
+              <span class="sat-badge">SUOMI-NPP &amp; NOAA-20</span>
+            </div>
+            <h3>Visible Infrared Imaging Radiometer Suite</h3>
+            <div class="spec-features">
+              <div><small>Pixel Footprint</small><b>≈ 375 m nadir</b></div>
+              <div><small>Thermal Channels</small><b>I-Bands (High Res)</b></div>
+              <div><small>Sample Detections</small><b id="viirsCount">—</b></div>
+              <div><small>Mean Radiative Power</small><b id="viirsMeanFrp">—</b></div>
+            </div>
+            <p class="spec-desc">Next-generation thermal sensor with ~7x smaller pixel area. Captures small, emergent, and smoldering thermal anomalies earlier in the diurnal cycle.</p>
+          </article>
+        </div>
+
+        <!-- Harmonization Pipeline Steps -->
+        <article class="panel pipeline-deck">
+          <div class="panel-head">
+            <div>
+              <span class="panel-eyebrow">MATHEMATICAL WORKFLOW</span>
+              <h2>Five-Stage Normalization Pipeline</h2>
+            </div>
+          </div>
+          <div class="pipeline-flow">
+            <div class="flow-step">
+              <span class="step-num">01</span>
+              <strong>Spaceborne Ingestion</strong>
+              <p>Validation of coordinates, UTC timestamps, scan/track angles, and background brightness temperatures.</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="step-num">02</span>
+              <strong>Within-Sensor Z-Score</strong>
+              <p>Standardizing brightness &amp; FRP within each sensor's historical distribution to isolate physical activity.</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="step-num">03</span>
+              <strong>0.05° Spatial Discretization</strong>
+              <p>Mapping detections into unified geographic grid cells (~5.5 km) to neutralize pixel resolution disparities.</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="step-num">04</span>
+              <strong>Sensor Agreement Index</strong>
+              <p>Quantifying consistency between normalized brightness, FRP, and co-located sensor observations.</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <span class="step-num">05</span>
+              <strong>Harmonized Index (HFAI)</strong>
+              <p>Generating a transparent, traceable activity index from 0.0 to 1.0 without black-box distortion.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Distribution Mix -->
+        <div class="compare-grid">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-eyebrow">OBSERVATION RATIO</span>
+                <h2>Detection Mix by Sensor</h2>
+              </div>
+            </div>
+            <div class="bars" id="sensorBars"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-eyebrow">METHODOLOGICAL RIGOR</span>
+                <h2>Reproducible Engineering</h2>
+              </div>
+            </div>
+            <p class="method-copy">
+              Rather than training speculative neural networks on unverified ground labels, FIRE-HARMONIX calculates a mathematically auditable index (HFAI). Each output is directly traceable to raw satellite telemetry, within-sensor standardization, and co-located agreement metrics.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- VIEW 04: ACTIVITY CALENDAR -->
+      <section class="view" id="calendar">
+        <div class="section-hero">
+          <span class="panel-eyebrow">TEMPORAL THERMAL DISTRIBUTION</span>
+          <h2>Burning Activity Calendar Heatmap</h2>
+          <p>Inspect daily thermal concentration patterns across the observation period. Intensity reflects average HFAI activity index, enabling analysts to identify peak burning episodes.</p>
+        </div>
+
+        <article class="panel calendar-panel">
+          <div class="calendar-controls">
+            <div class="calendar-legend-scale">
+              <span>NOMINAL / LOW</span>
+              <div class="scale-ramp">
+                <i style="background:#0e2a47" title="Low HFAI"></i>
+                <i style="background:#15456b" title="Moderate-Low HFAI"></i>
+                <i style="background:#0284c7" title="Moderate HFAI"></i>
+                <i style="background:#f59e0b" title="Elevated HFAI"></i>
+                <i style="background:#ea580c" title="High HFAI"></i>
+                <i style="background:#ff5722" title="Peak HFAI"></i>
+              </div>
+              <span>PEAK ACTIVITY</span>
+            </div>
+          </div>
+          <div class="calendar" id="activityCalendar"></div>
+        </article>
+
+        <div class="periods-deck">
+          <div class="panel-head">
+            <div>
+              <span class="panel-eyebrow">PRIORITY CHRONOLOGY</span>
+              <h2>Critical Activity Periods</h2>
+            </div>
+          </div>
+          <div class="periods" id="criticalPeriods"></div>
+        </div>
+      </section>
+
+      <!-- VIEW 05: SCENARIO LAB -->
+      <section class="view" id="lab">
+        <div class="section-hero">
+          <span class="panel-eyebrow">DIAGNOSTIC TEST BENCH</span>
+          <h2>Observation Scenario Lab</h2>
+          <p>Select any real spaceborne observation from the 200-sample archive to inspect its deterministic engineering breakdown. Analyze sensor telemetry, grid properties, and component contributions in real time.</p>
+        </div>
+
+        <div class="lab-layout">
+          <!-- Input Configuration Deck -->
+          <article class="panel lab-input-card">
+            <div class="panel-head">
+              <div>
+                <span class="panel-eyebrow">SAMPLE TELEMETRY</span>
+                <h2>Select Observation</h2>
+              </div>
+            </div>
+
+            <label class="sample-picker">
+              <span>OBSERVATION ARCHIVE (#001 – #200)</span>
+              <select id="sampleSelect" aria-label="Select observation from sample archive"></select>
+            </label>
+
+            <div class="raw-grid">
+              <label>
+                <span>LATITUDE (°)</span>
+                <input id="inputLat" readonly>
+              </label>
+              <label>
+                <span>LONGITUDE (°)</span>
+                <input id="inputLon" readonly>
+              </label>
+              <label>
+                <span>BRIGHTNESS (K)</span>
+                <input id="inputBrightness" readonly>
+              </label>
+              <label>
+                <span>FRP (MW)</span>
+                <input id="inputFrp" readonly>
+              </label>
+              <label>
+                <span>QUALITY CONFIDENCE</span>
+                <input id="inputConfidence" readonly>
+              </label>
+              <label>
+                <span>SOLAR ORBIT PHASE</span>
+                <input id="inputDaynight" readonly>
+              </label>
+            </div>
+
+            <button class="primary-btn large-btn" id="analyzeButton">
+              EXECUTE HARMONIZATION ANALYSIS
+            </button>
+          </article>
+
+          <!-- Output Diagnostic Deck -->
+          <article class="panel result-card" id="resultCard">
+            <div class="panel-head">
+              <div>
+                <span class="panel-eyebrow">HARMONIZATION DIAGNOSTIC</span>
+                <h2>Computed Activity Index</h2>
+              </div>
+              <span class="status-badge" id="resultStatus">READY TO ANALYZE</span>
+            </div>
+
+            <div class="result-score-block">
+              <div class="result-num-wrap">
+                <strong id="resultScore">—</strong>
+                <span>COMPOSITE HFAI SCORE</span>
+              </div>
+            </div>
+
+            <div class="result-track-wrap">
+              <div class="result-track"><i id="resultTrack"></i></div>
+              <div class="track-markers">
+                <span>0.0 NOMINAL</span>
+                <span>0.5 ELEVATED</span>
+                <span>1.0 UNUSUAL</span>
+              </div>
+            </div>
+
+            <!-- Component Decomposition Bars -->
+            <div class="decomposition-box">
+              <span class="decomp-title">INDEX COMPONENT DECOMPOSITION (WEIGHTS)</span>
+              <div class="decomp-row">
+                <span>Detection Density (25%)</span>
+                <div class="decomp-bar"><i id="decompC" style="width: 25%"></i></div>
+              </div>
+              <div class="decomp-row">
+                <span>Radiative Power FRP (25%)</span>
+                <div class="decomp-bar"><i id="decompF" style="width: 25%"></i></div>
+              </div>
+              <div class="decomp-row">
+                <span>Brightness Temp (20%)</span>
+                <div class="decomp-bar"><i id="decompB" style="width: 20%"></i></div>
+              </div>
+              <div class="decomp-row">
+                <span>Sensor Agreement (15%)</span>
+                <div class="decomp-bar"><i id="decompA" style="width: 15%"></i></div>
+              </div>
+              <div class="decomp-row">
+                <span>Quality Confidence (15%)</span>
+                <div class="decomp-bar"><i id="decompQ" style="width: 15%"></i></div>
+              </div>
+            </div>
+
+            <dl class="telemetry-list lab-result-dl">
+              <div><dt>GRID CELL ID</dt><dd id="resultGrid">—</dd></div>
+              <div><dt>SENSOR AGREEMENT</dt><dd id="resultAgreement">—</dd></div>
+              <div><dt>SATELLITE / SENSOR</dt><dd id="resultSensor">—</dd></div>
+              <div><dt>ACQUIRED (UTC)</dt><dd id="resultTime">—</dd></div>
+            </dl>
+
+            <div class="diagnostic-narrative">
+              <b>SCIENTIFIC INTERPRETATION</b>
+              <p id="resultText">Select an observation and execute analysis to inspect its harmonized activity index.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- VIEW 06: DATA EXPLORER -->
       <section class="view" id="data">
-        <div class="section-intro"><p class="kicker">AUDITABLE SAMPLE</p><h2>Every demo result starts here.</h2><p>The project includes the same <span id="dataCount">—</span> records as CSV and SQLite, with original NASA FIRMS fields plus derived harmonization features.</p></div>
-        <div class="data-actions"><a class="primary download" href="/data/fire_samples.csv" download>Download sample CSV</a><span>Table updates with the global sensor filter.</span></div>
-        <article class="panel table-wrap"><table><thead><tr><th>ID</th><th>Sensor</th><th>Satellite</th><th>Acquired</th><th>Coordinates</th><th>FRP</th><th>HFAI</th><th>Status</th></tr></thead><tbody id="dataTable"></tbody></table></article>
+        <div class="section-hero">
+          <span class="panel-eyebrow">AUDITABLE TELEMETRY REPOSITORY</span>
+          <h2>Source Data Explorer</h2>
+          <p>Every calculation in FIRE-HARMONIX originates from this verified dataset. Inspect raw sensor parameters alongside derived spatial grid IDs, sensor agreement metrics, and HFAI indexes.</p>
+        </div>
+
+        <div class="data-toolbar">
+          <div class="search-wrap">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" id="dataSearchInput" placeholder="Filter by ID, sensor, satellite, grid ID, status…" aria-label="Search observation records">
+          </div>
+          <div class="table-meta">
+            <span id="dataRowCount">SHOWING 200 OF 200 RECORDS</span>
+          </div>
+        </div>
+
+        <article class="panel table-panel">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th data-sort="id">ID ▾</th>
+                  <th data-sort="sensor">SENSOR</th>
+                  <th data-sort="satellite">SATELLITE</th>
+                  <th data-sort="acq_date">ACQUIRED UTC</th>
+                  <th data-sort="coords">COORDINATES</th>
+                  <th data-sort="frp">FRP (MW)</th>
+                  <th data-sort="brightness">BRIGHTNESS (K)</th>
+                  <th data-sort="hfai">HFAI</th>
+                  <th data-sort="status">STATUS</th>
+                </tr>
+              </thead>
+              <tbody id="dataTable"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <!-- VIEW 07: METHODOLOGY -->
+      <section class="view" id="methodology">
+        <div class="section-hero">
+          <span class="panel-eyebrow">MATHEMATICAL FOUNDATIONS &amp; RESEARCH PROTOCOL</span>
+          <h2>Scientific Methodology Dossier</h2>
+          <p>A transparent exposition of the cross-sensor calibration problem, standardization equations, spatial indexing, index formulation, and machine-learning feasibility benchmarks.</p>
+        </div>
+
+        <div class="methodology-grid">
+          <!-- Problem Statement -->
+          <article class="panel doc-panel">
+            <div class="doc-badge">SECTION 01</div>
+            <h3>The Multi-Sensor Calibration Challenge</h3>
+            <p>
+              Spaceborne active fire monitoring fundamentally relies on detecting sub-pixel thermal infrared radiance anomalies against cooler ambient backgrounds. However, observations gathered from distinct orbital instruments cannot be directly aggregated without introducing substantial distortion:
+            </p>
+            <ul>
+              <li><b>Spatial Resolution:</b> MODIS pixels measure ~1,000 m at nadir, whereas VIIRS delivers ~375 m resolution (a 7:1 pixel area difference). A single fire front that registers as one MODIS detection may trigger multiple adjacent VIIRS detections.</li>
+              <li><b>Sensitivity &amp; Saturation:</b> VIIRS I-band sensors detect low-intensity, smoldering sub-pixel fires that escape MODIS detection thresholds. Conversely, MODIS instruments carry higher saturation ceilings for intense thermal events.</li>
+              <li><b>Orbital Timing:</b> Instruments operate on differing sun-synchronous orbital tracks (Terra: ~10:30 AM/PM; Aqua and Suomi-NPP: ~01:30 PM/AM), capturing different phases of the diurnal burn cycle.</li>
+            </ul>
+          </article>
+
+          <!-- Mathematical Formulations -->
+          <article class="panel doc-panel">
+            <div class="doc-badge">SECTION 02</div>
+            <h3>Mathematical Formulations</h3>
+            
+            <div class="formula-block">
+              <span class="formula-title">1. Within-Sensor Z-Score Normalization</span>
+              <div class="math-eq">z_{i,s} = \frac{x_{i,s} - \mu_s}{\sigma_s}</div>
+              <p>Brightness and Fire Radiative Power (FRP) are normalized strictly within each sensor cohort $s \in \{\text{MODIS}, \text{VIIRS}\}$. This prevents models from mistaking sensor resolution for fire intensity.</p>
+            </div>
+
+            <div class="formula-block">
+              <span class="formula-title">2. Common Spatial Grid Discretization (0.05°)</span>
+              <div class="math-eq">g_{lat} = \lfloor latitude / 0.05 \rfloor, \quad g_{lon} = \lfloor longitude / 0.05 \rfloor</div>
+              <p>Continuous geographic coordinates are grouped into consistent spatial grid cells (~5.5 km resolution), providing a unified spatial indexing surface.</p>
+            </div>
+
+            <div class="formula-block">
+              <span class="formula-title">3. Sensor Agreement Metric</span>
+              <div class="math-eq">Agreement = 1 - \frac{|M - V|}{|M| + |V| + \epsilon}</div>
+              <p>Calculates relative consistency between normalized sensor readings in co-located grid cells, yielding a bounded agreement coefficient between 0 and 1.</p>
+            </div>
+
+            <div class="formula-block">
+              <span class="formula-title">4. Harmonized Fire Activity Index (HFAI)</span>
+              <div class="math-eq">HFAI = 0.25\,C + 0.25\,F + 0.20\,B + 0.15\,A + 0.15\,Q</div>
+              <p>Where $C$ represents detection density, $F$ represents normalized FRP, $B$ is normalized brightness, $A$ is the sensor agreement score, and $Q$ is sensor confidence quality.</p>
+            </div>
+          </article>
+
+          <!-- ML Feasibility Benchmarks -->
+          <article class="panel doc-panel">
+            <div class="doc-badge">SECTION 03</div>
+            <h3>Machine Learning Feasibility Benchmarks</h3>
+            <p>
+              In addition to the deterministic dashboard, the repository includes an offline feasibility study located under <code>ml/train_models.py</code>:
+            </p>
+            <div class="ml-spec-cards">
+              <div class="ml-card">
+                <strong>Isolation Forest (Anomaly Isolation)</strong>
+                <p>Trained unsupervised on multi-feature grid-day arrays (detection volume, FRP quantiles, brightness variance, day/night ratios) to identify statistical outliers without requiring unverified ground truth wildfire labels.</p>
+              </div>
+              <div class="ml-card">
+                <strong>XGBoost Regressor (24h Activity Forecast)</strong>
+                <p>Estimates next-day mean HFAI based on 7-day and 14-day rolling activity features. Evaluated using strict chronological train/validation/test splits.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Scientific Boundaries -->
+          <article class="panel doc-panel alert-doc">
+            <div class="doc-badge alert-badge">CRITICAL BOUNDARY</div>
+            <h3>Scientific &amp; Operational Boundaries</h3>
+            <p>
+              <b>Thermal anomaly $\neq$ confirmed wildfire:</b> A satellite thermal detection indicates an infrared radiance threshold exceedance. Industrial flaring, prescribed agricultural burns, volcanoes, and surface glare can trigger anomalies.
+            </p>
+            <p>
+              <b>Engineering metric $\neq$ emergency warning:</b> The Harmonized Fire Activity Index (HFAI) is a calibrated research construct designed for cross-sensor scientific alignment. It is not an official public safety alert or civil defense product.
+            </p>
+          </article>
+        </div>
       </section>
     </main>
   </div>
-  <script src="/app.js"></script>
+
+  <!-- Primary Application Script -->
+  <script src="/app.js?v=6"></script>
+  <!-- 3D Earth Globe Engine -->
+  <script src="/globe-map.js?v=6"></script>
 </body>
 </html>

@@ -1,0 +1,21 @@
+{
+  "name": "fire-harmonix",
+  "version": "1.0.0",
+  "description": "FIRE-HARMONIX · Advanced Spaceborne Thermal Intelligence Platform for Cross-Sensor Harmonization",
+  "scripts": {
+    "start": "python server.py",
+    "dev": "python server.py"
+  },
+  "keywords": [
+    "fire-harmonix",
+    "maplibre-gl",
+    "3d-globe",
+    "modis",
+    "viirs",
+    "thermal-infrared",
+    "sensor-harmonization",
+    "spaceborne-intelligence",
+    "earth-observation"
+  ],
+  "license": "MIT"
+}

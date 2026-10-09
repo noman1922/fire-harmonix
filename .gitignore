@@ -1,11 +1,46 @@
+# Python cache and environments
 __pycache__/
 *.py[cod]
-.venv/
+*$py.class
+*.so
+.Python
+env/
 venv/
+.venv/
+ENV/
+build/
+dist/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment variables and secrets
 .env
 .env.*
 !.env.example
-*.log
+*.pem
+*.key
+*.cert
+ngrok.yml
+
+# System & Editor artifacts
 .DS_Store
 Thumbs.db
-ngrok.yml
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node & Vercel local cache
+node_modules/
+.vercel/
+
+# Temporary files and migration artifacts
+*.tmp
+*.bak
+fire-harmonix-ui-upgrade/

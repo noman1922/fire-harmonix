@@ -4,7 +4,7 @@
 
 ```mermaid
 sequenceDiagram
-    participant K as Kaggle / NASA FIRMS
+    participant K as Spaceborne Telemetry Archives (MODIS & VIIRS)
     participant I as Ingestion
     participant H as Harmonization
     participant S as SQLite
