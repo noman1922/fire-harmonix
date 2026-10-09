@@ -16,14 +16,15 @@
 
   <!-- Core Styles & MapLibre GL 3D Globe Engine -->
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.2/dist/maplibre-gl.css">
-  <link rel="stylesheet" href="/styles.css?v=6">
-  <link rel="stylesheet" href="/globe-map.css?v=6">
+  <link rel="stylesheet" href="/styles.css?v=7">
+  <link rel="stylesheet" href="/globe-map.css?v=7">
   <script src="https://unpkg.com/maplibre-gl@5.6.2/dist/maplibre-gl.js"></script>
 </head>
 <body>
   <div class="shell">
     <!-- Left Navigation Rail / Command Deck -->
     <aside class="rail">
+      <button class="rail-close-btn" id="railCloseBtn" aria-label="Close navigation drawer">✕</button>
       <a class="brand" href="#overview" aria-label="FIRE-HARMONIX home">
         <div class="brand-badge">
           <svg viewBox="0 0 40 40" class="brand-svg">
@@ -89,13 +90,23 @@
       </div>
     </aside>
 
+    <!-- Modal Backdrop for Mobile Navigation Drawer -->
+    <div class="rail-backdrop" id="railBackdrop" aria-hidden="true"></div>
+
     <!-- Main Mission Control Deck -->
     <main>
       <!-- Top Flight Command Bar -->
       <header class="topbar">
         <div class="topbar-left">
-          <div class="mission-tag">ORBITAL OBSERVATION PLATFORM · CROSS-SENSOR HARMONIZATION</div>
-          <h1 id="viewTitle">Global Activity Overview</h1>
+          <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Navigation Drawer" title="Open Navigation Menu">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+          <div class="topbar-title-block">
+            <div class="mission-tag">ORBITAL OBSERVATION PLATFORM · CROSS-SENSOR HARMONIZATION</div>
+            <h1 id="viewTitle">Global Activity Overview</h1>
+          </div>
         </div>
         <div class="topbar-right">
           <div class="mission-clock" title="Mission Time Reference">
@@ -118,6 +129,17 @@
           </div>
         </div>
       </header>
+
+      <!-- Quick Horizontal Module Ribbon (Mobile & Tablet) -->
+      <nav class="mobile-nav-ribbon" aria-label="Quick module navigation">
+        <button class="mobile-pill-btn active" data-view="overview"><span class="pill-num">01</span> Overview</button>
+        <button class="mobile-pill-btn" data-view="explorer"><span class="pill-num">02</span> 3D Globe</button>
+        <button class="mobile-pill-btn" data-view="harmonize"><span class="pill-num">03</span> Harmonization</button>
+        <button class="mobile-pill-btn" data-view="calendar"><span class="pill-num">04</span> Calendar</button>
+        <button class="mobile-pill-btn" data-view="lab"><span class="pill-num">05</span> Scenario Lab</button>
+        <button class="mobile-pill-btn" data-view="data"><span class="pill-num">06</span> Data</button>
+        <button class="mobile-pill-btn" data-view="methodology"><span class="pill-num">07</span> Methodology</button>
+      </nav>
 
       <!-- VIEW 01: OVERVIEW -->
       <section class="view active" id="overview">
@@ -392,7 +414,9 @@
               <span>PEAK ACTIVITY</span>
             </div>
           </div>
-          <div class="calendar" id="activityCalendar"></div>
+          <div class="calendar-scroll-wrap">
+            <div class="calendar" id="activityCalendar"></div>
+          </div>
         </article>
 
         <div class="periods-deck">
@@ -656,8 +680,8 @@
   </div>
 
   <!-- Primary Application Script -->
-  <script src="/app.js?v=6"></script>
+  <script src="/app.js?v=7"></script>
   <!-- 3D Earth Globe Engine -->
-  <script src="/globe-map.js?v=6"></script>
+  <script src="/globe-map.js?v=7"></script>
 </body>
 </html>

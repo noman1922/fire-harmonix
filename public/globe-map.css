@@ -639,20 +639,115 @@
   box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
 }
 
-/* Responsive adjustments */
+/* =====================================================================
+   RESPONSIVE DESIGN (Globe HUD, Command Deck & Popups)
+   ===================================================================== */
 @media (max-width: 900px) {
   .map-hud-topright {
     display: none;
   }
-  .hud-deck-row {
-    flex-direction: column;
-    align-items: stretch;
+  .hud-presets-row {
+    flex-direction: row;
+    align-items: center;
+  }
+  .hud-deck-label {
+    font-size: 0.54rem;
+    padding-right: 0.4rem;
   }
   .hud-presets-ribbon {
     justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
   .hud-controls-row {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .map-hud-topleft {
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    gap: 0.25rem;
+  }
+  .hud-tag {
+    font-size: 0.58rem;
+  }
+  .hud-metric strong {
+    font-size: 0.92rem;
+  }
+  .hud-coords {
+    font-size: 0.58rem;
+    padding-top: 0.25rem;
+  }
+  .map-hud-command-deck {
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    gap: 0.35rem;
+  }
+  .hud-presets-row {
+    padding: 0.3rem 0.5rem;
+  }
+  .hud-deck-label {
+    display: none;
+  }
+  .preset-btn {
+    padding: 0.3rem 0.55rem;
+    font-size: 0.58rem;
+  }
+  .hud-status-badge {
+    font-size: 0.56rem;
+    padding: 0.28rem 0.5rem;
+  }
+  .hud-tool-btn {
+    padding: 0.28rem 0.5rem;
+    font-size: 0.58rem;
+  }
+  .hud-zoom-trio button {
+    padding: 0.28rem 0.5rem;
+    font-size: 0.72rem;
+  }
+  .fire-popup-box {
+    max-width: 270px;
+    padding: 0.65rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .map-hud-command-deck {
+    left: 0.35rem;
+    right: 0.35rem;
+    bottom: 0.35rem;
+    gap: 0.25rem;
+  }
+  .hud-presets-row {
+    padding: 0.25rem 0.4rem;
+  }
+  .preset-btn {
+    padding: 0.26rem 0.45rem;
+    font-size: 0.54rem;
+    gap: 0.25rem;
+  }
+  .hud-controls-row {
+    gap: 0.35rem;
+  }
+  .hud-status-badge {
+    font-size: 0.52rem;
+    padding: 0.22rem 0.4rem;
+    letter-spacing: 0.04em;
+  }
+  .hud-tool-btn {
+    padding: 0.24rem 0.4rem;
+    font-size: 0.54rem;
+    gap: 0.25rem;
+  }
+  .hud-zoom-trio button {
+    padding: 0.24rem 0.4rem;
+    font-size: 0.68rem;
   }
 }

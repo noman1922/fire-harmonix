@@ -421,11 +421,39 @@ function renderTable() {
 }
 
 // Navigation & Dynamic 3D Globe Repositioning
+// Mobile Navigation Drawer Controls
+function openMobileDrawer() {
+  $('.rail')?.classList.add('open');
+  $('#railBackdrop')?.classList.add('open');
+  document.body.classList.add('drawer-open');
+}
+
+function closeMobileDrawer() {
+  $('.rail')?.classList.remove('open');
+  $('#railBackdrop')?.classList.remove('open');
+  document.body.classList.remove('drawer-open');
+}
+
+// Navigation & Dynamic 3D Globe Repositioning
 function setView(id) {
   state.currentView = id;
 
   $$('.view').forEach((view) => view.classList.toggle('active', view.id === id));
   $$('.nav-item').forEach((item) => item.classList.toggle('active', item.dataset.view === id));
+
+  // Sync mobile pill buttons
+  $$('.mobile-pill-btn').forEach((pill) => {
+    const isActive = pill.dataset.view === id;
+    pill.classList.toggle('active', isActive);
+    if (isActive) {
+      try {
+        pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      } catch (_) {}
+    }
+  });
+
+  // Close mobile drawer upon module selection
+  closeMobileDrawer();
 
   const titles = {
     overview: 'Global Activity Overview',
@@ -468,8 +496,18 @@ function setView(id) {
 // Event Listeners & Wiring
 window.setView = setView;
 window.selectObservation = selectObservation;
+window.openMobileDrawer = openMobileDrawer;
+window.closeMobileDrawer = closeMobileDrawer;
+
+$('#mobileNavToggle')?.addEventListener('click', openMobileDrawer);
+$('#railCloseBtn')?.addEventListener('click', closeMobileDrawer);
+$('#railBackdrop')?.addEventListener('click', closeMobileDrawer);
 
 $$('.nav-item').forEach((button) => {
+  button.addEventListener('click', () => setView(button.dataset.view));
+});
+
+$$('.mobile-pill-btn').forEach((button) => {
   button.addEventListener('click', () => setView(button.dataset.view));
 });
 
