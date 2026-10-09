@@ -476,31 +476,6 @@ the relevant repository revision and Git history.
 -   Further work needs multi-year regional histories, matched
     observations, and stronger validation.
 
-## Competition submission checklist
-
--   [ ] The deployed website is publicly accessible and works without
-    authentication.
--   [ ] The correct GitHub repository is public and contains the final
-    source code.
--   [ ] The live website and repository links match the submission form.
--   [ ] The project matches the selected official challenge.
--   [ ] Team details and required submission fields are complete.
--   [ ] The exact sample dataset source, author, version, and license
-    are documented.
--   [ ] Third-party libraries, fonts, and imagery are properly
-    attributed.
--   [ ] Dataset and imagery terms have been checked.
--   [ ] The MIT license is included for project code.
--   [ ] Scientific limitations and non-operational status are clear.
--   [ ] No private credentials or personal information are published.
--   [ ] The map, filters, downloads, navigation, and mobile layout are
-    tested.
--   [ ] Any required video, presentation, or other submission material
-    is ready.
--   [ ] The team has checked the latest official rules and deadline.
-
-This checklist is a preparation aid, not a guarantee of eligibility or
-acceptance.
 
 ## Sources and attribution
 
